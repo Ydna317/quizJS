@@ -1,18 +1,18 @@
-var currentQuestionIndex = 0;
-var time = questions.length * 15;
-var timerId;
-var questionsEl = document.getElementById("questions");
-var timerEl = document.getElementById("time");
-var choicesEl = document.getElementById("choices");
-var submitBtn = document.getElementById("submit");
-var startBtn = document.getElementById("start");
-var initialsEl = document.getElementById("initials");
-var feedbackEl = document.getElementById("feedback");
-var sfxRight = new Audio("assets/sfx/correct.wav");
-var sfxWrong = new Audio("assets/sfx/incorrect.wav");
+let currentQuestionIndex = 0;
+let time = questions.length * 15;
+let timerId;
+let questionsEl = document.getElementById("questions");
+let timerEl = document.getElementById("time");
+let choicesEl = document.getElementById("choices");
+let submitBtn = document.getElementById("submit");
+let startBtn = document.getElementById("start");
+let initialsEl = document.getElementById("initials");
+let feedbackEl = document.getElementById("feedback");
+let sfxRight = new Audio("assets/sfx/correct.wav");
+let sfxWrong = new Audio("assets/sfx/incorrect.wav");
 
 function startQuiz() {
-  var startScreenEl = document.getElementById("start-screen");
+  let startScreenEl = document.getElementById("start-screen");
   startScreenEl.setAttribute("class", "hide");
   questionsEl.removeAttribute("class");
   timerId = setInterval(clockTick, 1000);
@@ -20,12 +20,12 @@ function startQuiz() {
   getQuestion();
 }
 function getQuestion() {
-  var currentQuestion = questions[currentQuestionIndex];
-  var titleEl = document.getElementById("question-title");
+  let currentQuestion = questions[currentQuestionIndex];
+  let titleEl = document.getElementById("question-title");
   titleEl.textContent = currentQuestion.title;
   choicesEl.innerHTML = "";
   currentQuestion.choices.forEach(function(choice, i) {
-    var choiceNode = document.createElement("button");
+    let choiceNode = document.createElement("button");
     choiceNode.setAttribute("class", "choice");
     choiceNode.setAttribute("value", choice);
     choiceNode.textContent = i + 1 + ". " + choice;
@@ -60,9 +60,9 @@ function questionClick() {
 }
 function quizEnd() {
   clearInterval(timerId);
-  var endScreenEl = document.getElementById("end-screen");
+  let endScreenEl = document.getElementById("end-screen");
   endScreenEl.removeAttribute("class");
-  var finalScoreEl = document.getElementById("final-score");
+  let finalScoreEl = document.getElementById("final-score");
   finalScoreEl.textContent = time;
   questionsEl.setAttribute("class", "hide");
 }
@@ -76,11 +76,11 @@ function clockTick() {
 }
 
 function saveHighscore() {
-  var initials = initialsEl.value.trim();
+  let initials = initialsEl.value.trim();
   if (initials !== "") {
-    var highscores =
+    let highscores =
       JSON.parse(window.localStorage.getItem("highscores")) || [];
-    var newScore = {
+    let newScore = {
       score: time,
       initials: initials
     };
